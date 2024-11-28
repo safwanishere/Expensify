@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <header>
+        <p>Expensify</p>
+        <div class="header-links">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+    </header>
+
+    <main>
+        <img alt="{{ top }}" class="border img-fluid" src="https://api.memegen.link/images/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?background=https://i.imgur.com/CsCgN7Ll.png&width=400" title="{{ top }}">
+    </main>
+{% endblock %}

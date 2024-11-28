@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expensify</title>
+
+    <link rel="stylesheet" href="../static/dashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js"></script>
+</head>
+<body>
+    <header>
+        <p>Expensify</p>
+        <div class="header-links">
+            <a href="/logout">Logout</a>
+            <a>{{ username }}</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.4rem" height="1.4rem" viewBox="0 0 24 24">
+                <g fill="none" fill-rule="evenodd">
+                    <path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z" />
+                    <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2M8.5 9.5a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0m9.758 7.484A7.99 7.99 0 0 1 12 20a7.99 7.99 0 0 1-6.258-3.016C7.363 15.821 9.575 15 12 15s4.637.821 6.258 1.984" />
+                </g>
+            </svg>
+        </div>
+    </header>
+
+    <section style="display: flex; height: 93vh; width: 100vw; justify-content: space-between;">
+        <nav>
+            <div class="nav-link selected">
+                <svg xmlns="http://www.w3.org/2000/svg" width="0.75em" height="1em" viewBox="0 0 384 512">
+                    <path fill="currentColor" d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128v320c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64h-37.5C269.4 26.7 233.8 0 192 0m0 64a32 32 0 1 1 0 64a32 32 0 1 1 0-64M72 272a24 24 0 1 1 48 0a24 24 0 1 1-48 0m104-16h128c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16M72 368a24 24 0 1 1 48 0a24 24 0 1 1-48 0m88 0c0-8.8 7.2-16 16-16h128c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16" />
+                </svg>
+                <a href="/dashboard">dashboard</a>
+            </div>
+    
+            <div class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1em" viewBox="0 0 640 512">
+                    <path fill="currentColor" d="M621.16 54.46C582.37 38.19 543.55 32 504.75 32c-123.17-.01-246.33 62.34-369.5 62.34c-30.89 0-61.76-3.92-92.65-13.72c-3.47-1.1-6.95-1.62-10.35-1.62C15.04 79 0 92.32 0 110.81v317.26c0 12.63 7.23 24.6 18.84 29.46C57.63 473.81 96.45 480 135.25 480c123.17 0 246.34-62.35 369.51-62.35c30.89 0 61.76 3.92 92.65 13.72c3.47 1.1 6.95 1.62 10.35 1.62c17.21 0 32.25-13.32 32.25-31.81V83.93c-.01-12.64-7.24-24.6-18.85-29.47M48 132.22c20.12 5.04 41.12 7.57 62.72 8.93C104.84 170.54 79 192.69 48 192.69zm0 285v-47.78c34.37 0 62.18 27.27 63.71 61.4c-22.53-1.81-43.59-6.31-63.71-13.62M320 352c-44.19 0-80-42.99-80-96c0-53.02 35.82-96 80-96s80 42.98 80 96c0 53.03-35.83 96-80 96m272 27.78c-17.52-4.39-35.71-6.85-54.32-8.44c5.87-26.08 27.5-45.88 54.32-49.28zm0-236.11c-30.89-3.91-54.86-29.7-55.81-61.55c19.54 2.17 38.09 6.23 55.81 12.66z" />
+                </svg>
+                <a href="/transactions">transactions</a>
+            </div>
+    
+            <div class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h368c17.7 0 32-14.3 32-32s-14.3-32-32-32zm352 240a32 32 0 1 1 0 64a32 32 0 1 1 0-64" />
+                </svg>
+                <a href="/accounts">accounts</a>
+            </div>
+    
+            <div class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="0.75em" height="1em" viewBox="0 0 384 512">
+                    <path fill="currentColor" d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128v320c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64h-37.5C269.4 26.7 233.8 0 192 0m0 64a32 32 0 1 1 0 64a32 32 0 1 1 0-64M72 272a24 24 0 1 1 48 0a24 24 0 1 1-48 0m104-16h128c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16M72 368a24 24 0 1 1 48 0a24 24 0 1 1-48 0m88 0c0-8.8 7.2-16 16-16h128c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16" />
+                </svg>
+                <a href="/categories">categories</a>
+            </div>
+    
+            <div class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="m487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14c-11.1-35.6-30-67.8-54.7-94.6c-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7c-36.7-8.2-74.3-7.8-109.2 0c-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3c-24.7 26.7-43.6 58.9-54.7 94.6c-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14c11.1 35.6 30 67.8 54.7 94.6c3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7c36.7 8.2 74.3 7.8 109.2 0c5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3c24.7-26.7 43.6-58.9 54.7-94.6c1.5-5.5-.7-11.3-5.6-14.1M256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80s80 35.9 80 80s-35.9 80-80 80" />
+                </svg>
+                <a href="/settings">settings</a>
+            </div>
+        </nav>
+
+        
+        <main style="height: 100%; width: 85%;">
+            <div class="dashboard-grid">
+                <canvas id="incomeChart" class="incomeChart"></canvas>
+                <canvas id="expenseChart" class="expenseChart"></canvas>
+                <canvas id="categoryChart" class="categoryChart"></canvas>
+                <canvas id="incomeCategoryChart" class="incomeCategoryChart"></canvas>
+                <div class="dash-div">
+                    <h2>Most Used Account : {{ mostUsedAccount }}</h3>
+                    <h2>Most Used Category : {{ mostUsedCategory }}</h3>
+                    <h2>Total Transactions : {{ totalTransactions }}</h3>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <script>
+        const incomeChartctx = document.getElementById("incomeChart").getContext("2d");
+
+        const incomeChart = new Chart(incomeChartctx, {
+            type: "line",
+            data: {
+                labels: {{ incomeLabels | safe }},
+                datasets: [
+                    {
+                        label: "money spent",
+                        data: {{ incomeData | safe}},
+                        fill: true,
+                        borderColor: "green",
+                        lineTension: 0,
+                        
+                    }
+                ]
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,    
+                        text: 'Income graph', 
+                        align: 'center',   
+                        color: 'black',    
+                        fullSize: true,    
+                        position: 'top',   
+                        font: {
+                            size: 14,       
+                            weight: 'normal', 
+                            family: 'Arial',  
+                            style: 'normal'  
+                        },
+                        padding: {
+                            top: 0,         
+                            bottom: 15,      
+                            left: 2,        
+                            right: 2        
+                        }
+                    }
+                }
+            }
+        });
+
+        const expenseChartctx = document.getElementById("expenseChart").getContext("2d");
+
+        const expenseChart = new Chart(expenseChartctx, {
+            type: "line",
+            data: {
+                labels: {{ expenseLabels | safe }},
+                datasets: [
+                    {
+                        label: "money spent",
+                        data: {{ expenseData | safe}},
+                        fill: true,
+                        borderColor: "red",
+                        lineTension: 0,
+                        
+                    }
+                ]
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,    
+                        text: 'Expense graph', 
+                        align: 'center',   
+                        color: 'black',    
+                        fullSize: true,    
+                        position: 'top',   
+                        font: {
+                            size: 14,       
+                            weight: 'normal', 
+                            family: 'Arial',  
+                            style: 'normal'  
+                        },
+                        padding: {
+                            top: 0,         
+                            bottom: 15,      
+                            left: 2,        
+                            right: 2        
+                        }
+                    }
+                }
+            }
+        });
+
+
+        const categoryChartctx = document.getElementById("categoryChart").getContext("2d");
+
+        const categoryChart = new Chart(categoryChartctx, {
+            type: "pie",
+            data: {
+                labels: {{ category | safe }},
+                datasets: [
+                    {
+                        label: "money spent",
+                        data: {{ categoryAmount | safe}},
+                        backgroundColor: ["yellow", "orange", "blue", "purple", "red", "brown", "grey", "pink", "cyan", "black"],
+                    }
+                ]
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,    
+                        text: 'Expense by category graph', 
+                        align: 'center',   
+                        color: 'black',    
+                        fullSize: true,    
+                        position: 'top',   
+                        font: {
+                            size: 14,       
+                            weight: 'normal', 
+                            family: 'Arial',  
+                            style: 'normal'  
+                        },
+                        padding: {
+                            top: 0,         
+                            bottom: 15,      
+                            left: 2,        
+                            right: 2        
+                        }
+                    }
+                }
+            }
+        });
+
+
+        const incomeCategoryChartctx = document.getElementById("incomeCategoryChart").getContext("2d");
+
+        const incomeCategoryChart = new Chart(incomeCategoryChartctx, {
+            type: "pie",
+            data: {
+                labels: {{ incomeCategory | safe }},
+                datasets: [
+                    {
+                        label: "money spent",
+                        data: {{ incomeCategoryAmount | safe}},
+                        backgroundColor: ["yellow", "orange", "blue", "purple", "red", "brown", "grey", "pink", "cyan", "black"],
+                    }
+                ]
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,    
+                        text: 'Income by category graph', 
+                        align: 'center',   
+                        color: 'black',    
+                        fullSize: true,    
+                        position: 'top',   
+                        font: {
+                            size: 14,       
+                            weight: 'normal', 
+                            family: 'Arial',  
+                            style: 'normal'  
+                        },
+                        padding: {
+                            top: 0,         
+                            bottom: 15,      
+                            left: 2,        
+                            right: 2        
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <header>
+        <p>Expensify</p>
+        <div class="header-links">
+            <a href="/register">Register</a>
+            <a href="/">Home</a>
+        </div>
+    </header>
+
+    <main>
+        <h1 style="padding-bottom: 5vh;">login to your account</h1>
+        <form action="/login" method="post">
+            <label for="username">Enter Username: </label>
+            <input autocomplete="off" name="username" placeholder="Username" type="text">
+
+            <label for="password">Enter Password: </label>
+            <input autocomplete="off" name="password" placeholder="Password" type="password">
+
+            <button type="submit">Login</button>
+        </form>
+    </main>
+{% endblock %}
